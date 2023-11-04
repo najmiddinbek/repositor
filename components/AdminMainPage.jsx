@@ -13,7 +13,6 @@ export default function page() {
                 <h1 className='page_text poppins text-3xl mb-4 font-bold'>Chortoq tumani 3-maktab o`quvchilari</h1>
                 <Link href={"/"} className="green py-3 px-10 button text-white rounded-md">Orqaga</Link>
             </div>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, sequi.</h1>
             <>
                 <div className='w-full h-[10px] bg-transparent rounded-xl'></div>
                 <Link href={"/adminPanel"}>
