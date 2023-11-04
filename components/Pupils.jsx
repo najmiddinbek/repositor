@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import FilterOption from "./FilterOption";
-import Link from "next/link"
 
 const PupilsAddClient = () => {
     const [shaxs, setShaxs] = useState("");
@@ -22,7 +21,6 @@ const PupilsAddClient = () => {
     const router = useRouter();
     const maktablar = Array.from({ length: 54 }, (_, index) => index + 1);
     const kun = Array.from({ length: 3 }, (_, index) => index + 1);
-    const sinflar = Array.from({ length: 11 }, (_, index) => index + 1);
     const soat = Array.from({ length: 6 }, (_, index) => index + 1);
 
     const handleSubmit = async (e) => {
@@ -83,9 +81,6 @@ const PupilsAddClient = () => {
     return (
         <>
             <form onSubmit={handleSubmit} className="container flex flex-col gap-3">
-                <div className="text-end    ">
-                    <Link href={"/"} className="green py-3 px-10 text-white rounded-md">Orqaga</Link>
-                </div>
                 <label className="text-[18px] poppins font-bold" htmlFor="">
                     Maktabni tanlang
                 </label>
@@ -105,21 +100,7 @@ const PupilsAddClient = () => {
                 <label className="text-[18px] font-bold poppins" htmlFor="">
                     Sinfni tanlang
                 </label>
-                <select
-                    onChange={(e) => setNewSinfi(e.target.value)}
-                    value={newSinfi}
-                    className="px-2 py-3 cursor-pointer"
-                >
-                    <option>Bu yerdan tanlang</option>
-                    {sinflar.map((sinf) => (
-                        <option key={sinf} value={sinf}>
-                            {sinf}-sinf
-                        </option>
-                    ))}
-                </select>
-                <label className="text-[18px] poppins font-bold" htmlFor="">
-                    Familiya,Ismi hamda Otasining ismi
-                </label>
+
                 <FilterOption
                     shaxsiy={newIsm}
                     setShaxsiy={setNewIsm}

@@ -21,6 +21,7 @@ const getTopics = async () => {
 
 export default function FilterOption({ shaxsiy, setShaxsiy }) {
     const [mavzula, setMavzula] = useState([]);
+    const [selectedOption, setSelectedOption] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,6 +38,12 @@ export default function FilterOption({ shaxsiy, setShaxsiy }) {
 
 
 
+    const handleOptionChange = (e) => {
+        const selectedGrade = e.target.value;
+        setSelectedOption(selectedGrade);
+        setShaxsiy(selectedGrade);
+    };
+
     useEffect(() => {
         const fetchTopics = async () => {
             const { mavzula } = await getTopics();
@@ -46,16 +53,36 @@ export default function FilterOption({ shaxsiy, setShaxsiy }) {
         fetchTopics();
     }, []);
 
+
+    const sinflar = Array.from({ length: 11 }, (_, index) => index + 1);
+
+
     return (
         <div>
-            <div className="flex gap-4">
-                <select className="w-full p-3" >
+            <select className="px-2 py-3 cursor-pointer w-full" onChange={handleOptionChange}>
+                <option>Bu yerdan tanlang</option>
+                {sinflar.map((sinf) => (
+                    <option key={sinf} value={sinf}>
+                        {sinf}
+                    </option>
+                ))}
+            </select>
+            <div className="gap-4">
+                <label className="text-[18px] poppins font-bold" htmlFor="">
+                    Familiya, Ismi hamda Otasining ismi
+                </label>
+
+                <select className="w-full p-3" value={selectedOption}>
                     <option>Tanlang</option>
-                    {mavzula.map((mavzu, index) => (
-                        <option key={index} value={mavzu.shaxs}>{mavzu.shaxs}</option>
-                    ))}
+                    {mavzula
+                        .filter((mavzu) => mavzu.sinf === parseInt(selectedOption))
+                        .map((mavzu, index) => (
+                            <option className="" key={index} value={mavzu.shaxs}>
+                                {mavzu.shaxs} <b>{mavzu.sinf}-sinf</b>
+                            </option>
+                        ))}
                 </select>
             </div>
         </div>
-    )
+    );
 }
