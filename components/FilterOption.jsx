@@ -35,12 +35,7 @@ export default function FilterOption({ shaxsiy, setShaxsiy }) {
         fetchData();
     }, []);
 
-    const [selectedOption, setSelectedOption] = useState("");
 
-    const handleOptionChange = (e) => {
-        setSelectedOption(e.target.value);
-        setShaxsiy(e.target.value);
-    };
 
     useEffect(() => {
         const fetchTopics = async () => {
@@ -54,7 +49,7 @@ export default function FilterOption({ shaxsiy, setShaxsiy }) {
     return (
         <div>
             <div className="flex gap-4">
-                <select className="w-full p-3" value={selectedOption} onChange={handleOptionChange}>
+                <select className="w-full p-3" >
                     <option>Tanlang</option>
                     {mavzula.map((mavzu, index) => (
                         <option key={index} value={mavzu.shaxs}>{mavzu.shaxs}</option>
